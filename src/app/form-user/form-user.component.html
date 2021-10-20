@@ -1,0 +1,88 @@
+<h1>Create Account</h1>
+<form class="w-50 mx-auto" #f="ngForm">
+  <div class="form-group">
+    <label>First Name</label>
+    <input type="text" name="firstname" class="form-control" [(ngModel)]="user.firstName" required minlength="3" #fn="ngModel" pattern="[a-zA-Z]+$">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fn.invalid && fn.touched">
+    <div *ngIf="fn.hasError('required')">first name is required</div>
+    <div *ngIf="fn.hasError('minlength')">should have more than 3 characters</div>
+    <div *ngIf="fn.hasError('pattern')">no numbers</div>
+
+  </div>
+
+
+  <div class="form-group">
+  <label>Last Name</label>
+  <input type="text" name="lastname" class="form-control" [(ngModel)]="user.lastName" required minlength="3" #fl="ngModel" pattern="[a-zA-Z]+$">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fl.invalid && fl.touched">
+
+    <div *ngIf="fl.hasError('required')">last name is required</div>
+    <div *ngIf="fl.hasError('minlength')">should have more than 3 characters</div>
+    <div *ngIf="fl.hasError('pattern')">no numbers</div>
+  </div>
+  <br>
+
+
+  <div class="form-group">
+    <label>Birth Date</label>
+    <input type="date" name="birthdate" class="form-control" [(ngModel)]="user.birthDate" required #fbd="ngModel">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fbd.invalid && fbd.touched">
+
+    <div *ngIf="fbd.hasError('required')">Birth date is required</div>
+
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" [(ngModel)]="user.email" required #fe="ngModel" pattern="^[a-zA-Z0-9._-]+@gmail.com">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fe.invalid && fe.touched">
+
+    <div *ngIf="fe.hasError('required')">Email is required</div>
+    <div *ngIf="fe.hasError('pattern')">Email doit se terminer par la chaîne de caractère « @gmail.com</div>
+
+  </div>
+  <br>
+
+  <div class="form-group">
+    <label>Category</label>
+    <input type="text" name="category" value="Customer" class="form-control" disabled>
+  </div>
+  &nbsp;
+  <br>
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" name="password" class="form-control" [(ngModel)]="user.password" required #fp="ngModel" pattern="^[a-zA-Z0-9]{8,}?">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fp.invalid && fp.touched">
+
+    <div *ngIf="fp.hasError('required')">Password is required</div>
+    <div *ngIf="fp.hasError('pattern')">
+      <ul>
+        <li>Caractères minuscules de a à z non accentués,</li>
+        <li>Caractères majuscules de A à Z non accentués,</li>
+        <li>Chiffres de 0 à 9,</li>
+        <li>Au moins 8 caractères.</li>
+      </ul>
+    </div>
+
+  </div>
+  <br>
+
+  <button class="btn btn-outline-success" [disabled]="f.invalid" (click)="save()">Save</button>
+  &nbsp;
+  <button class="btn btn-outline-warning" (click)="f.reset()">Reset</button>
+  &nbsp;
+  <button class="btn btn-outline-warning" type="reset">Reset</button>
+
+</form>
