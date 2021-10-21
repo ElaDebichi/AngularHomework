@@ -26,6 +26,19 @@
   </div>
   <br>
 
+  <div class="form-group">
+    <label>Profession</label>
+    <input type="text" name="job" class="form-control" [(ngModel)]="user.profession" required minlength="3" #fj="ngModel" pattern="[a-zA-Z]+$">
+  </div>
+  &nbsp;
+  <div class="alert alert-danger" *ngIf="fj.invalid && fj.touched">
+
+    <div *ngIf="fj.hasError('required')">profession is required</div>
+    <div *ngIf="fj.hasError('minlength')">should have more than 3 characters</div>
+    <div *ngIf="fj.hasError('pattern')">no numbers</div>
+  </div>
+  <br>
+
 
   <div class="form-group">
     <label>Birth Date</label>
@@ -47,7 +60,7 @@
   <div class="alert alert-danger" *ngIf="fe.invalid && fe.touched">
 
     <div *ngIf="fe.hasError('required')">Email is required</div>
-    <div *ngIf="fe.hasError('pattern')">Email doit se terminer par la chaîne de caractère « @gmail.com</div>
+    <div *ngIf="fe.hasError('pattern')">Email doit se terminer par la chaîne de caractère "@gmail.com"</div>
 
   </div>
   <br>
